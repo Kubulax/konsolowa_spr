@@ -1,4 +1,6 @@
-﻿namespace konsolowa
+﻿using System.Runtime.ConstrainedExecution;
+
+namespace konsolowa
 {
     public class MusicAlbum
     {
@@ -21,14 +23,22 @@
     {
         static void Main(string[] args)
         {
-            List<MusicAlbum> albumList = GetMusicAlbums();
+            string path = "../../../Data.txt";
+            List<MusicAlbum> albumList = GetMusicAlbums(path);
             DisplayAlbums(albumList);
         }
 
-        public static List<MusicAlbum> GetMusicAlbums()
+        /**********************************************
+        nazwa funkcji: GetMusicAlbums
+        opis funkcji: Funkcja czyta dane albumów z określonego podaną jako parametr funkcji ścieżką, tworzy z nich obiekt klasy MusicAlbum, dodaje do listy a nastęmnie ją zwraca.
+        parametry: string path: parametr określający ścieżkę, pod którą znajduje się plik z danymi albumów muzycznych.
+        ...
+        zwracany typ i opis: List<MusicAlbum> - lista obiektów klasy MusicAlbum odczytanych z pliku (lista albumów muzycznych).
+        autor: PESEL
+        ***********************************************/
+        public static List<MusicAlbum> GetMusicAlbums(string path)
         {
             List<MusicAlbum> list = new List<MusicAlbum>();
-            string path = "../../../Data.txt";
 
             StreamReader sr = new StreamReader(path);
 
