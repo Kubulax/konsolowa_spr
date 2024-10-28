@@ -19,5 +19,23 @@
         {
             
         }
+
+        public static List<MusicAlbum> GetMusicAlbums()
+        {
+            var list = new List<MusicAlbum>();
+            string path = "../../../Data.txt";
+
+            StreamReader sr = new StreamReader(path);
+
+            while(sr.ReadLine() != null)
+            {
+                string artist = sr.ReadLine() ?? "";
+                string album = sr.ReadLine() ?? "";
+                int songsNumber = Int32.Parse(sr.ReadLine() ?? "0");
+                string year = sr.ReadLine() ?? "";
+                int downloadNumber = Int32.Parse(sr.ReadLine() ?? "0");
+            }
+               
+        }
     }
 }
