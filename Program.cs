@@ -8,34 +8,57 @@
         public string year;
         public int downloadNumber;
 
-        public MusicAlbum()
+        public MusicAlbum (string artist, string album, int songsNumber, string year, int downloadNumber)
         {
-
+            this.artist = artist;
+            this.album = album;
+            this.songsNumber = songsNumber;
+            this.year = year;
+            this.downloadNumber = downloadNumber;
         }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            
+            List<MusicAlbum> albumList = GetMusicAlbums();
+            DisplayAlbums(albumList);
         }
 
         public static List<MusicAlbum> GetMusicAlbums()
         {
-            var list = new List<MusicAlbum>();
+            List<MusicAlbum> list = new List<MusicAlbum>();
             string path = "../../../Data.txt";
 
             StreamReader sr = new StreamReader(path);
 
-            while(sr.ReadLine() != null)
+            while(!sr.EndOfStream)
             {
                 string artist = sr.ReadLine() ?? "";
                 string album = sr.ReadLine() ?? "";
-                int songsNumber = Int32.Parse(sr.ReadLine() ?? "0");
+                int songsNumber = int.Parse(sr.ReadLine() ?? "0");
                 string year = sr.ReadLine() ?? "";
-                int downloadNumber = Int32.Parse(sr.ReadLine() ?? "0");
+                int downloadNumber = int.Parse(sr.ReadLine() ?? "0");
+                sr.ReadLine();
+
+                MusicAlbum musicAlbum = new MusicAlbum(artist, album, songsNumber, year, downloadNumber);
+                list.Add(musicAlbum);
             }
-               
+            
+            return list;
+        }
+
+        public static void DisplayAlbums(List<MusicAlbum> albumList)
+        {
+            foreach (MusicAlbum album in albumList)
+            {
+                Console.WriteLine(album.artist);
+                Console.WriteLine(album.album);
+                Console.WriteLine(album.songsNumber);
+                Console.WriteLine(album.year);
+                Console.WriteLine(album.downloadNumber);
+                Console.WriteLine("");
+            }
         }
     }
 }
